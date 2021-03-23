@@ -26,13 +26,20 @@ public class Menu {
         }
 
     }
-    public Menu(){
+    public Menu() {
+        Scanner clavier = new Scanner(System.in);
+        System.out.println("Menu");
+        System.out.println("1. Créer nouveau personnage.");
+        System.out.println("2. Afficher votre personnage.");
+        System.out.println("3. Modifier votre personnage.");
+        System.out.println("4. Quitter");
+    }
+    public void creer(){
         int i;
         int j;
         int n;
         int m;
 
-        Scanner clavier = new Scanner(System.in);
         System.out.print("Quel type de personnage vous voulez créer (Guerrier/Magicien): ");
         typeDePersonnage = clavier.nextLine();
         this.typeDePersonnage = typeDePersonnage;
@@ -76,6 +83,8 @@ public class Menu {
         }
         clavier.close();
     }
+
+
      public void modifier (){
          Scanner clavier = new Scanner(System.in);
          System.out.print("Voulez-vous modifier: ");
