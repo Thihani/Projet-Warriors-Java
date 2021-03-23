@@ -3,46 +3,44 @@ import java.util.Scanner;
 
 
 public class Menu {
-    static String typeDePersonnage;
+    private String typeDePersonnage;
     private String nom;
     private int niveau;
     private int force;
+    private int action;
 
-    public static void main(String[] args) {
-        Menu myMenu = new Menu();
+    public void launchMenu() {
 
         if (typeDePersonnage.equals("Guerrier")){
-            Guerrier myGuerrier = new Guerrier(myMenu.nom, myMenu.niveau, myMenu.force);
-            System.out.println("My Guerrier");
-            System.out.println(myGuerrier.getNom());
-            System.out.println(myGuerrier.getNiveau());
-            System.out.println(myGuerrier.getForce());
-        } else {
-            Magicien myMagicien = new Magicien(myMenu.nom, myMenu.niveau, myMenu.force);
-            System.out.println("My Magicien");
-            System.out.println(myMagicien.getNom());
-            System.out.println(myMagicien.getNiveau());
-            System.out.println(myMagicien.getForce());
-        }
+            Guerrier myGuerrier = new Guerrier(this.nom, this.niveau, this.force);
+            System.out.println("Votre Guerrier");
+            this.afficher(myGuerrier);
+            this.home();
+            if (action == 1) {
+                this.modifier(myGuerrier);
+                this.afficher(myGuerrier);
+            }
 
+        } else {
+            Magicien myMagicien = new Magicien(this.nom, this.niveau, this.force);
+            System.out.println("Votre Magicien");
+            this.afficher(myMagicien);
+            this.home();
+            if (action == 1) {
+                this.modifier(myMagicien);
+                this.afficher(myMagicien);
+            }
+        }
     }
-    public Menu() {
-        Scanner clavier = new Scanner(System.in);
-        System.out.println("Menu");
-        System.out.println("1. Créer nouveau personnage.");
-        System.out.println("2. Afficher votre personnage.");
-        System.out.println("3. Modifier votre personnage.");
-        System.out.println("4. Quitter");
-    }
-    public void creer(){
+
+    public Menu(){
         int i;
         int j;
         int n;
         int m;
-
+        Scanner clavier = new Scanner(System.in);
         System.out.print("Quel type de personnage vous voulez créer (Guerrier/Magicien): ");
         typeDePersonnage = clavier.nextLine();
-        this.typeDePersonnage = typeDePersonnage;
 
         System.out.print("Saisir le nom: ");
         nom = clavier.nextLine();
@@ -81,12 +79,41 @@ public class Menu {
         if(this.force>=m && this.force<=n){
             this.force = force;
         }
+
+    }
+
+    public void home() {
+        Scanner clavier = new Scanner(System.in);
+        System.out.println("Menu");
+        System.out.println("1. Modifier votre personnage.");
+        System.out.println("2. Demarrer");
+        System.out.println("Entrer le numero: ");
+        action = clavier.nextInt();
+    }
+
+    public void afficher (Personnage myPersonnage) {
+        System.out.println("Nom: " + myPersonnage.getNom());
+        System.out.println("Niveau: " + myPersonnage.getNiveau());
+        System.out.println("Force: " + myPersonnage.getForce());
+    }
+
+    public void modifier(Personnage myPersonnage ) {
+        Scanner clavier = new Scanner(System.in);
+        System.out.print("Saisir le nouveau nom: ");
+        myPersonnage.setNom(clavier.nextLine());
+        System.out.print("Saisir le nouveau niveau: ");
+        myPersonnage.setNiveau(clavier.nextInt());
+        System.out.print("Saisir la nouvelle force: ");
+        myPersonnage.setForce(clavier.nextInt());
         clavier.close();
     }
 
+    public void demarrer () {
 
-     public void modifier (){
-         Scanner clavier = new Scanner(System.in);
-         System.out.print("Voulez-vous modifier: ");
-     }
+    }
+
+
+
+
+
 }

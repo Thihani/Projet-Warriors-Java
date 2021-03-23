@@ -5,9 +5,7 @@ public class Personnage {
     private String nom;
     private int niveau;
     private int force;
-    public static void main(String[] args) {
 
-    }
     public Personnage(){
         nom = "Person";
         niveau = 0;
