@@ -9,53 +9,39 @@ public class Personnage {
 
     }
     public Personnage(){
-        Scanner clavier = new Scanner(System.in);
-
-        System.out.print("Saisir le nom : ");
-        nom = clavier.nextLine();
-
-        System.out.print("Saisir le niveau : ");
-        niveau = clavier.nextInt();
-
-        System.out.print("Saisir le force : ");
-        force = clavier.nextInt();
-
-        System.out.println("[nom = " + nom + ", niveau = " + niveau + ", force" + force + "]");
-
-        clavier.close();
+        nom = "Person";
+        niveau = 0;
+        force = 0;
     }
     public Personnage (String nom){
-        Scanner clavier = new Scanner(System.in);
-
-        System.out.print("Saisir le nom : ");
-        nom = clavier.nextLine();
-
-        System.out.print("Saisir le niveau : ");
-        niveau = clavier.nextInt();
-
-        System.out.print("Saisir le force : ");
-        force = clavier.nextInt();
-
-        System.out.println("[nom = " + nom + ", niveau = " + niveau + ", force" + force + "]");
-
-        clavier.close();
+        this.nom = nom;
+        niveau = 0;
+        force = 0;
     }
     public Personnage (String nom, int niveau, int force){
-        Scanner clavier = new Scanner(System.in);
-
-        System.out.print("Saisir le nom : ");
-        nom = clavier.nextLine();
-
-        System.out.print("Saisir le niveau : ");
-        niveau = clavier.nextInt();
-
-        System.out.print("Saisir le force : ");
-        force = clavier.nextInt();
-
-        System.out.println("[nom = " + nom + ", niveau = " + niveau + ", force" + force + "]");
-
-        clavier.close();
+        this.nom = nom;
+        this.niveau = niveau;
+        this.force = force;
     }
 
+    public void setNom(String nom){
+        this.nom = nom;
+    }
+    public String getNom(){
+        return nom;
+    }
 
+    public void setNiveau(int niveau){
+        this.niveau = niveau;
+    }
+    public int getNiveau(){
+        return niveau;
+    }
+
+    public void setForce(int force){
+        this.force = force;
+    }
+    public int getForce (){
+        return force;
+    }
 }

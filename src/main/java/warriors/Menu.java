@@ -68,7 +68,7 @@ public class Menu {
         force = clavier.nextInt();
         while(this.force<m || this.force>n){
             System.out.println("Votre force doit être entre " + m + "et " + n);
-            System.out.println("Saisir le niveau (entre " + m + " et " +n + " ):");
+            System.out.println("Saisir la force (entre " + m + " et " +n + " ):");
             force= clavier.nextInt();
         }
         if(this.force>=m && this.force<=n){
