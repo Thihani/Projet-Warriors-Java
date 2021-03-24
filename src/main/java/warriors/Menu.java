@@ -12,26 +12,28 @@ public class Menu {
     private int lancerDe;
     private int option;
 
+
     public void launchMenu() {
 
         if (typeDePersonnage.equals("Guerrier")){
             Guerrier myGuerrier = new Guerrier(this.nom, this.niveau, this.force);
             while (action == 1 || action == 2 || action == 3){
-                if (action == 1) {
-                    this.modifier(myGuerrier);
-                }
-                if (action == 2) {
-                    this.afficher(myGuerrier);
-                }
-                if (action == 3) {
-                    demarrer();
-                    while (option == 6) {
-                        this.demarrer();
-                    }
-                    if (option == 5) {
-                        quitter();
-                        action = 0;
-                    }
+                switch (action) {
+                    case 1:
+                        this.modifier(myGuerrier);
+                        break;
+                    case 2:
+                        this.afficher(myGuerrier);
+                        break;
+                    case 3:
+                        demarrer();
+                        while (option == 6) {
+                            this.demarrer();
+                        }
+                        if (option == 5) {
+                            quitter();
+                            action = 0;
+                        }
                 }
             }
             if (action == 4){
@@ -40,21 +42,22 @@ public class Menu {
         } else {
             Magicien myMagicien = new Magicien(this.nom, this.niveau, this.force);
             while (action == 1 || action == 2 || action == 3){
-                if (action == 1) {
-                    this.modifier(myMagicien);
-                }
-                if (action == 2) {
-                    this.afficher(myMagicien);
-                }
-                if (action == 3) {
-                    demarrer();
-                    while (option == 6) {
-                        this.demarrer();
-                    }
-                    if (option == 5) {
-                        quitter();
-                        action = 0;
-                    }
+                switch (action) {
+                    case 1:
+                        this.modifier(myMagicien);
+                        break;
+                    case 2:
+                        this.afficher(myMagicien);
+                        break;
+                    case 3:
+                        demarrer();
+                        while (option == 6) {
+                            this.demarrer();
+                        }
+                        if (option == 5) {
+                            quitter();
+                            action = 0;
+                        }
                 }
             }
             if (action == 4){
@@ -174,16 +177,29 @@ public class Menu {
     }
 
     public void demarrer () {
-        position = 1;
-        while (position !=64) {
-            lancerDe = (int) (Math.random()*(6-1)) + 1;
-            position = position + lancerDe;
-            System.out.println("Votre position: " + position);
-            if (position >= 64){
-                break;
-            }
+        int [] plateau = new int [64];
+        for (int i = 0; i <plateau.length; i++) {
+            plateau[i] = i+1;
         }
+        position = 1;
+
+       try {
+            while (position <64) {
+                lancerDe = (int) (Math.random()*(6-1)) + 1;
+                System.out.println("Lancer dé: " +lancerDe);
+                position = plateau[position+lancerDe-1];
+                System.out.println("Votre position: " + position);
+                if (position == 64){
+                    System.out.println("Vous êtes gagné.");
+                }
+            }
+        } catch (Exception e) {
+            PersonnageHorsPlateauException myException = new PersonnageHorsPlateauException(this.nom,this.niveau,this.force);
+            System.out.println(myException.getNom() + " a dépassé de la case finale.");
+        }
+
         Scanner clavier = new Scanner(System.in);
+        System.out.println("Votre choix:");
         System.out.println("5: Quitter le jeu.");
         System.out.println("6: Recommencer.");
         option = clavier.nextInt();
