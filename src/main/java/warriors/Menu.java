@@ -8,29 +8,80 @@ public class Menu {
     private int niveau;
     private int force;
     private int action;
+    private int position;
+    private int lancerDe;
+    private int option;
 
     public void launchMenu() {
 
         if (typeDePersonnage.equals("Guerrier")){
             Guerrier myGuerrier = new Guerrier(this.nom, this.niveau, this.force);
-            System.out.println("Votre Guerrier");
-            this.afficher(myGuerrier);
-            this.home();
-            if (action == 1) {
-                this.modifier(myGuerrier);
-                this.afficher(myGuerrier);
+            while (action == 1 || action == 2 || action == 3){
+                if (action == 1) {
+                    this.modifier(myGuerrier);
+                }
+                if (action == 2) {
+                    this.afficher(myGuerrier);
+                }
+                if (action == 3) {
+                    demarrer();
+                    while (option == 6) {
+                        this.demarrer();
+                    }
+                    if (option == 5) {
+                        quitter();
+                        action = 0;
+                    }
+                }
             }
-
+            if (action == 4){
+                quitter();
+            }
         } else {
             Magicien myMagicien = new Magicien(this.nom, this.niveau, this.force);
-            System.out.println("Votre Magicien");
-            this.afficher(myMagicien);
-            this.home();
-            if (action == 1) {
-                this.modifier(myMagicien);
-                this.afficher(myMagicien);
+            while (action == 1 || action == 2 || action == 3){
+                if (action == 1) {
+                    this.modifier(myMagicien);
+                }
+                if (action == 2) {
+                    this.afficher(myMagicien);
+                }
+                if (action == 3) {
+                    demarrer();
+                    while (option == 6) {
+                        this.demarrer();
+                    }
+                    if (option == 5) {
+                        quitter();
+                        action = 0;
+                    }
+                }
             }
+            if (action == 4){
+                quitter();
+            }
+    }
+
+        /*if (typeDePersonnage.equals("Guerrier")){
+            Personnage myPerso = new Guerrier(this.nom,this.niveau,this.force);
+            System.out.println("Votre Guerrier");
+        } else {
+            Personnage myPerso = new Magicien(this.nom,this.niveau,this.force);
+            System.out.println("Votre Magicien");
         }
+        while (action == 1 || action == 2 || action == 3){
+            if (action == 1) {
+                this.modifier(myPerso);
+            }
+            if (action == 2) {
+                this.afficher(myPerso);
+            }
+            if (action == 3) {
+                demarrer();
+
+            }
+        }*/
+
     }
 
     public Menu(){
@@ -79,6 +130,7 @@ public class Menu {
         if(this.force>=m && this.force<=n){
             this.force = force;
         }
+        this.home();
 
     }
 
@@ -86,15 +138,24 @@ public class Menu {
         Scanner clavier = new Scanner(System.in);
         System.out.println("Menu");
         System.out.println("1. Modifier votre personnage.");
-        System.out.println("2. Demarrer");
+        System.out.println("2. Afficher votre personnage");
+        System.out.println("3. Demarrer");
+        System.out.println("4. Quitter");
         System.out.println("Entrer le numero: ");
         action = clavier.nextInt();
     }
 
     public void afficher (Personnage myPersonnage) {
+        if (typeDePersonnage.equals("Guerrier")){
+            System.out.println("Votre Guerrier");
+        } else {
+            System.out.println("Votre Magicien");
+        }
         System.out.println("Nom: " + myPersonnage.getNom());
         System.out.println("Niveau: " + myPersonnage.getNiveau());
         System.out.println("Force: " + myPersonnage.getForce());
+        this.home();
+
     }
 
     public void modifier(Personnage myPersonnage ) {
@@ -105,15 +166,27 @@ public class Menu {
         myPersonnage.setNiveau(clavier.nextInt());
         System.out.print("Saisir la nouvelle force: ");
         myPersonnage.setForce(clavier.nextInt());
-        clavier.close();
+        this.home();
+    }
+
+    public void quitter (){
+        System.out.println("Vous avez quitté de Warriors!");
     }
 
     public void demarrer () {
-
+        position = 1;
+        while (position !=64) {
+            lancerDe = (int) (Math.random()*(6-1)) + 1;
+            position = position + lancerDe;
+            System.out.println("Votre position: " + position);
+            if (position >= 64){
+                break;
+            }
+        }
+        Scanner clavier = new Scanner(System.in);
+        System.out.println("5: Quitter le jeu.");
+        System.out.println("6: Recommencer.");
+        option = clavier.nextInt();
     }
-
-
-
-
 
 }

@@ -1,7 +1,7 @@
 package main.java.warriors;
 import java.util.Scanner;
 
-public class Personnage {
+public abstract class Personnage {
     private String nom;
     private int niveau;
     private int force;
