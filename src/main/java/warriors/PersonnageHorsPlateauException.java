@@ -1,8 +1,8 @@
 package main.java.warriors;
 
-public class PersonnageHorsPlateauException extends Personnage{
+public class PersonnageHorsPlateauException extends Exception{
 
-    public PersonnageHorsPlateauException(String nom, int niveau, int force) {
-        super(nom,niveau,force);
+    public PersonnageHorsPlateauException() {
+        super("Vous avez dépassé de la case finale");
     }
 }

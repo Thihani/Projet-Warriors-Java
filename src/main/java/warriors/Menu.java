@@ -12,7 +12,6 @@ public class Menu {
     private int lancerDe;
     private int option;
 
-
     public void launchMenu() {
 
         if (typeDePersonnage.equals("Guerrier")){
@@ -63,28 +62,7 @@ public class Menu {
             if (action == 4){
                 quitter();
             }
-    }
-
-        /*if (typeDePersonnage.equals("Guerrier")){
-            Personnage myPerso = new Guerrier(this.nom,this.niveau,this.force);
-            System.out.println("Votre Guerrier");
-        } else {
-            Personnage myPerso = new Magicien(this.nom,this.niveau,this.force);
-            System.out.println("Votre Magicien");
         }
-        while (action == 1 || action == 2 || action == 3){
-            if (action == 1) {
-                this.modifier(myPerso);
-            }
-            if (action == 2) {
-                this.afficher(myPerso);
-            }
-            if (action == 3) {
-                demarrer();
-
-            }
-        }*/
-
     }
 
     public Menu(){
@@ -134,7 +112,6 @@ public class Menu {
             this.force = force;
         }
         this.home();
-
     }
 
     public void home() {
@@ -177,25 +154,18 @@ public class Menu {
     }
 
     public void demarrer () {
-        int [] plateau = new int [64];
-        for (int i = 0; i <plateau.length; i++) {
-            plateau[i] = i+1;
-        }
+        Plateau plateau = new Plateau();
         position = 1;
-
-       try {
-            while (position <64) {
+        try {
+            while (position <=64) {
                 lancerDe = (int) (Math.random()*(6-1)) + 1;
                 System.out.println("Lancer dé: " +lancerDe);
-                position = plateau[position+lancerDe-1];
+                position = position + lancerDe;
                 System.out.println("Votre position: " + position);
-                if (position == 64){
-                    System.out.println("Vous êtes gagné.");
-                }
-            }
-        } catch (Exception e) {
-            PersonnageHorsPlateauException myException = new PersonnageHorsPlateauException(this.nom,this.niveau,this.force);
-            System.out.println(myException.getNom() + " a dépassé de la case finale.");
+                plateau.setPosition(position);
+               }
+        } catch (PersonnageHorsPlateauException e) {
+            e.printStackTrace();
         }
 
         Scanner clavier = new Scanner(System.in);
@@ -204,5 +174,4 @@ public class Menu {
         System.out.println("6: Recommencer.");
         option = clavier.nextInt();
     }
-
 }
