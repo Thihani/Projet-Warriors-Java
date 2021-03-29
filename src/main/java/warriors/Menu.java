@@ -1,4 +1,5 @@
 package main.java.warriors;
+
 import java.util.Scanner;
 
 
@@ -14,9 +15,9 @@ public class Menu {
 
     public void launchMenu() {
 
-        if (typeDePersonnage.equals("Guerrier")){
+        if (typeDePersonnage.equals("Guerrier")) {
             Guerrier myGuerrier = new Guerrier(this.nom, this.niveau, this.force);
-            while (action == 1 || action == 2 || action == 3){
+            while (action == 1 || action == 2 || action == 3) {
                 switch (action) {
                     case 1:
                         this.modifier(myGuerrier);
@@ -35,12 +36,12 @@ public class Menu {
                         }
                 }
             }
-            if (action == 4){
+            if (action == 4) {
                 quitter();
             }
         } else {
             Magicien myMagicien = new Magicien(this.nom, this.niveau, this.force);
-            while (action == 1 || action == 2 || action == 3){
+            while (action == 1 || action == 2 || action == 3) {
                 switch (action) {
                     case 1:
                         this.modifier(myMagicien);
@@ -59,13 +60,13 @@ public class Menu {
                         }
                 }
             }
-            if (action == 4){
+            if (action == 4) {
                 quitter();
             }
         }
     }
 
-    public Menu(){
+    public Menu() {
         int i;
         int j;
         int n;
@@ -78,37 +79,37 @@ public class Menu {
         nom = clavier.nextLine();
         this.nom = nom;
 
-        if(typeDePersonnage.equals("Guerrier")) {
+        if (typeDePersonnage.equals("Guerrier")) {
             i = 5;
-            j=10;
+            j = 10;
             m = 5;
             n = 10;
         } else {
             i = 3;
-            j=6;
+            j = 6;
             m = 8;
             n = 15;
         }
 
         System.out.print("Saisir le niveau: ");
         niveau = clavier.nextInt();
-        while(this.niveau<i || this.niveau>j){
+        while (this.niveau < i || this.niveau > j) {
             System.out.println("Votre niveau doit être entre " + i + "et " + j);
-            System.out.println("Saisir le niveau (entre " + i + " et " +j + " ):");
+            System.out.println("Saisir le niveau (entre " + i + " et " + j + " ):");
             niveau = clavier.nextInt();
         }
-        if(this.niveau>=i && this.niveau<=j){
+        if (this.niveau >= i && this.niveau <= j) {
             this.niveau = niveau;
         }
 
         System.out.print("Saisir le force: ");
         force = clavier.nextInt();
-        while(this.force<m || this.force>n){
+        while (this.force < m || this.force > n) {
             System.out.println("Votre force doit être entre " + m + "et " + n);
-            System.out.println("Saisir la force (entre " + m + " et " +n + " ):");
-            force= clavier.nextInt();
+            System.out.println("Saisir la force (entre " + m + " et " + n + " ):");
+            force = clavier.nextInt();
         }
-        if(this.force>=m && this.force<=n){
+        if (this.force >= m && this.force <= n) {
             this.force = force;
         }
         this.home();
@@ -125,20 +126,17 @@ public class Menu {
         action = clavier.nextInt();
     }
 
-    public void afficher (Personnage myPersonnage) {
-        if (typeDePersonnage.equals("Guerrier")){
+    public void afficher(Personnage myPersonnage) {
+        if (typeDePersonnage.equals("Guerrier")) {
             System.out.println("Votre Guerrier");
         } else {
             System.out.println("Votre Magicien");
         }
-        System.out.println("Nom: " + myPersonnage.getNom());
-        System.out.println("Niveau: " + myPersonnage.getNiveau());
-        System.out.println("Force: " + myPersonnage.getForce());
+        System.out.println(myPersonnage.toString());
         this.home();
-
     }
 
-    public void modifier(Personnage myPersonnage ) {
+    public void modifier(Personnage myPersonnage) {
         Scanner clavier = new Scanner(System.in);
         System.out.print("Saisir le nouveau nom: ");
         myPersonnage.setNom(clavier.nextLine());
@@ -149,23 +147,23 @@ public class Menu {
         this.home();
     }
 
-    public void quitter (){
+    public void quitter() {
         System.out.println("Vous avez quitté de Warriors!");
     }
 
-    public void demarrer () {
+    public void demarrer() {
         Plateau plateau = new Plateau();
         position = 1;
         try {
-            while (position <=64) {
-                lancerDe = (int) (Math.random()*(6-1)) + 1;
-                System.out.println("Lancer dé: " +lancerDe);
+            while (position <= 64) {
+                lancerDe = (int) (Math.random() * (6 - 1)) + 1;
+                System.out.println("Lancer dé: " + lancerDe);
                 position = position + lancerDe;
                 System.out.println("Votre position: " + position);
                 plateau.setPosition(position);
-               }
+            }
         } catch (PersonnageHorsPlateauException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
 
         Scanner clavier = new Scanner(System.in);
