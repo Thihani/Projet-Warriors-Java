@@ -1,19 +1,19 @@
 package main.java.warriors;
 
-import java.util.Scanner;
+import main.java.warriors.cases.armes.Armes;
 
 public abstract class Personnage {
     private String nom;
     private int niveau;
     private int force;
-    private Arme arme;
+    private Armes armes;
 
-    public Arme getArme() {
-        return arme;
+    public Armes getArme() {
+        return armes;
     }
 
-    public void setArme(Arme arme) {
-        this.arme = arme;
+    public void setArme(Armes armes) {
+        this.armes = armes;
     }
 
     public Personnage() {

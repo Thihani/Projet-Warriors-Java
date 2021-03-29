@@ -156,7 +156,7 @@ public class Menu {
         position = 1;
         try {
             while (position <= 64) {
-                lancerDe = (int) (Math.random() * (6 - 1)) + 1;
+                    lancerDe = (int) (Math.random() * (6 - 1)) + 1;
                 System.out.println("Lancer dé: " + lancerDe);
                 position = position + lancerDe;
                 System.out.println("Votre position: " + position);

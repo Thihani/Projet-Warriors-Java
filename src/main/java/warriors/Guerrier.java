@@ -17,6 +17,7 @@ public class Guerrier extends Personnage {
         super(nom,niveau,force);
     }
 
+
     /*public Arme getArme() {
         return arme;
     }
