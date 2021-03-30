@@ -23,6 +23,6 @@ public class Potions extends Case {
 
     @Override
     public String toString() {
-        return "Nom: " + nom + ", Niveau: " + niveau;
+        return nom + ", Niveau: " + niveau;
     }
 }

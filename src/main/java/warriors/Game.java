@@ -1,4 +1,5 @@
 package main.java.warriors;
+
 import main.java.warriors.cases.armes.Armes;
 import main.java.warriors.cases.Case;
 import main.java.warriors.cases.CaseVide;
@@ -10,7 +11,7 @@ import main.java.warriors.ennemis.Gobelin;
 import java.util.ArrayList;
 
 public class Game {
-    private ArrayList <Case> myPlateau;
+    private ArrayList<Case> myPlateau;
     private int positionJoueur;
     private int lancerDe;
 
@@ -20,12 +21,12 @@ public class Game {
 
     public void display() {
         fillPlateau();
-        for (Case casePlateau:myPlateau) {
-            System.out.println(casePlateau);
+        for (int i = 0; i <4; i++) {
+            System.out.println("Case " + i + " - " + myPlateau.get(i));
         }
     }
 
-    public void fillPlateau () {
+    public void fillPlateau() {
         myPlateau.add(new CaseVide());
         myPlateau.add(new Gobelin());
         myPlateau.add(new Epee());
@@ -33,12 +34,12 @@ public class Game {
 
     }
 
-    public void play (Personnage personnage) {
+    public void play(Personnage personnage) {
         for (positionJoueur = 0; positionJoueur < 4; positionJoueur++) {
-            myPlateau.get(positionJoueur).interact();
+            myPlateau.get(positionJoueur).interact(personnage);
         }
-
+        System.out.println("----------------------------------------------" );
+        System.out.println("Niveau de personnage: " + personnage.getNiveau());
+        System.out.println("Force de personnage: " + personnage.getForce());
     }
-
-
 }

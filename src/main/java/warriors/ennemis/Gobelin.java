@@ -8,7 +8,7 @@ public class Gobelin extends Ennemi{
     }
 
     public void interact(Personnage personnage){
-        personnage.setNiveau(personnage.getNiveau()+getNiveau());
-        personnage.setForce(personnage.getForce()+getForce());
+        personnage.setNiveau(personnage.getNiveau() - getNiveau());
+        personnage.setForce(personnage.getForce() - getForce());
     }
 }

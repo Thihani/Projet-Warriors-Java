@@ -22,7 +22,7 @@ public class Armes extends Case {
 
     @Override
     public String toString() {
-        return "Nom: " + nom + ", Force: " +force;
+        return nom + ", Force: " +force;
     }
 
 }
