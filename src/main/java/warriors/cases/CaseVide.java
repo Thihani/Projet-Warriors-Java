@@ -1,6 +1,8 @@
 package main.java.warriors.cases;
+import main.java.warriors.Personnage;
+import main.java.warriors.cases.Case;
 
-public class CaseVide extends Case{
+public class CaseVide implements Case{
     public CaseVide () {
     }
     @Override
@@ -8,4 +10,8 @@ public class CaseVide extends Case{
         return "Case vide";
     }
 
+    @Override
+    public void interact(Personnage personnage) {
+
+    }
 }

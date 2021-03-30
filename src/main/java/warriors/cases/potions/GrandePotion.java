@@ -8,6 +8,6 @@ public class GrandePotion extends Potions{
     }
 
     public void interact (Personnage personnage) {
-        personnage.setForce(personnage.getNiveau()+getNiveau());
+        personnage.setNiveau(personnage.getNiveau()+getNiveau());
     }
 }

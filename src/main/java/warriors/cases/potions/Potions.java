@@ -1,8 +1,10 @@
 package main.java.warriors.cases.potions;
 
+import main.java.warriors.Personnage;
+import main.java.warriors.cases.CaseVide;
 import main.java.warriors.cases.Case;
 
-public class Potions extends Case {
+public class Potions implements Case {
 
     private String nom;
     private int niveau;
@@ -19,7 +21,7 @@ public class Potions extends Case {
         return niveau;
     }
 
-    public void interact () {}
+    public void interact (Personnage personnage) {}
 
     @Override
     public String toString() {

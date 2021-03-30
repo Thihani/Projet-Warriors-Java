@@ -1,12 +1,13 @@
-package main.java.warriors.cases.armes;
+package main.java.warriors.cases.sorts;
+
 import main.java.warriors.Personnage;
 import main.java.warriors.cases.Case;
 
-public abstract class Armes implements Case {
+public abstract class Sorts implements Case {
     private String nom;
     private int force;
 
-    public Armes(String nom, int force) {
+    public Sorts (String nom, int force) {
         this.nom = nom;
         this.force = force;
     }
@@ -25,5 +26,4 @@ public abstract class Armes implements Case {
     public String toString() {
         return nom + ", Force: " +force;
     }
-
 }

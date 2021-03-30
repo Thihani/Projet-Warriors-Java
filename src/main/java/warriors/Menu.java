@@ -12,11 +12,13 @@ public class Menu {
     private int position;
     private int lancerDe;
     private int option;
+    Guerrier myGuerrier;
+    Magicien myMagicien;
 
     public void launchMenu() {
 
         if (typeDePersonnage.equals("Guerrier")) {
-            Guerrier myGuerrier = new Guerrier(this.nom, this.niveau, this.force);
+            myGuerrier = new Guerrier(this.nom, this.niveau, this.force);
             while (action == 1 || action == 2 || action == 3) {
                 switch (action) {
                     case 1:
@@ -40,7 +42,7 @@ public class Menu {
                 quitter();
             }
         } else {
-            Magicien myMagicien = new Magicien(this.nom, this.niveau, this.force);
+            myMagicien = new Magicien(this.nom, this.niveau, this.force);
             while (action == 1 || action == 2 || action == 3) {
                 switch (action) {
                     case 1:
@@ -53,6 +55,7 @@ public class Menu {
                         demarrer();
                         while (option == 6) {
                             this.demarrer();
+
                         }
                         if (option == 5) {
                             quitter();
@@ -152,7 +155,7 @@ public class Menu {
     }
 
     public void demarrer() {
-        Plateau plateau = new Plateau();
+        /*Plateau plateau = new Plateau();
         position = 1;
         try {
             while (position <= 64) {
@@ -164,7 +167,10 @@ public class Menu {
             }
         } catch (PersonnageHorsPlateauException e) {
             System.out.println(e);
-        }
+        }*/
+        Game game = new Game();
+        game.display();
+        game.play(myGuerrier);
 
         Scanner clavier = new Scanner(System.in);
         System.out.println("Votre choix:");

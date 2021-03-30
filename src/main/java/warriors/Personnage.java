@@ -7,6 +7,17 @@ public abstract class Personnage {
     private int niveau;
     private int force;
     private Armes armes;
+    private boolean mort;
+
+    public void setMort() {
+        /*if (niveau <= 0) {mort = true;}
+        else { mort = false;}*/
+        mort = niveau <= 0;
+    }
+
+    public boolean isMort() {
+        return mort;
+    }
 
     public Armes getArme() {
         return armes;
