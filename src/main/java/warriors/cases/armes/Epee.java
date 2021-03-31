@@ -9,6 +9,10 @@ public class Epee extends Armes {
     }
 
     public void interact (Personnage personnage) {
-        personnage.setForce(personnage.getForce()+getForce());
+        personnage.setArme(this);
+        if(personnage.getArme()!=null){
+            personnage.setForce(personnage.getForce()+getForce());
+        }
+
     }
 }

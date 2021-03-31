@@ -8,6 +8,9 @@ public class Eclair extends Sorts{
     }
 
     public void interact (Personnage personnage) {
-        personnage.setForce(personnage.getForce()+getForce());
+        personnage.setSorts(this);
+        if(personnage.getSorts()!=null){
+            personnage.setForce(personnage.getForce()+getForce());
+        }
     }
 }

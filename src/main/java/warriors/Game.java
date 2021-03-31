@@ -83,6 +83,6 @@ public class Game {
                 break;
             }
         }
-        System.out.println("Perso est mort à la case " + positionJoueur);
+        System.out.println("Perso est mort à la case " + (positionJoueur-1));
     }
 }
