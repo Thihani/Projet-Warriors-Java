@@ -28,9 +28,9 @@ public class Menu {
                         this.afficher(myGuerrier);
                         break;
                     case 3:
-                        demarrer();
+                        demarrer(myGuerrier);
                         while (option == 6) {
-                            this.demarrer();
+                            this.demarrer(myGuerrier);
                         }
                         if (option == 5) {
                             quitter();
@@ -52,9 +52,9 @@ public class Menu {
                         this.afficher(myMagicien);
                         break;
                     case 3:
-                        demarrer();
+                        demarrer(myMagicien);
                         while (option == 6) {
-                            this.demarrer();
+                            this.demarrer(myMagicien);
 
                         }
                         if (option == 5) {
@@ -154,7 +154,7 @@ public class Menu {
         System.out.println("Vous avez quitté de Warriors!");
     }
 
-    public void demarrer() {
+    public void demarrer(Personnage personnage) {
         /*Plateau plateau = new Plateau();
         position = 1;
         try {
@@ -170,9 +170,10 @@ public class Menu {
         }*/
         Game game = new Game();
         game.display();
-        game.play(myGuerrier);
+        game.play(personnage);
 
         Scanner clavier = new Scanner(System.in);
+        System.out.println("----------------------------------------------");
         System.out.println("Votre choix:");
         System.out.println("5: Quitter le jeu.");
         System.out.println("6: Recommencer.");

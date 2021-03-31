@@ -1,5 +1,6 @@
 package main.java.warriors.cases.armes;
 
+import main.java.warriors.Guerrier;
 import main.java.warriors.Personnage;
 
 public class Epee extends Armes {

@@ -1,9 +1,11 @@
 package main.java.warriors;
 
+import main.java.warriors.cases.armes.Armes;
+import main.java.warriors.cases.sorts.Sorts;
+
 import java.util.Scanner;
 
 public class Guerrier extends Personnage {
-    //private Arme arme = new Arme();
 
     public Guerrier() {
         super("Fox",5,5);
@@ -17,13 +19,5 @@ public class Guerrier extends Personnage {
         super(nom,niveau,force);
     }
 
-
-    /*public Arme getArme() {
-        return arme;
-    }
-
-    public void setArme(Arme arme) {
-        this.arme = arme;
-    }*/
-
+    public void setSorts(Sorts sorts) {}
 }

@@ -18,7 +18,7 @@ public class Game {
     private ArrayList<Case> myPlateau;
     private int positionJoueur;
     private int lancerDe;
-    private Case [] plateauStandard = new Case[64];
+    private Case[] plateauStandard = new Case[64];
 
     public Game() {
         myPlateau = new ArrayList<>();
@@ -26,42 +26,41 @@ public class Game {
 
     public void display() {
         fillPlateau();
-        System.out.println("----------------------------------------------");
-        System.out.println("PLATEAU DU JEU");
+        System.out.println("-----------------------PLATEAU DU JEU-----------------------");
         for (int i = 0; i < plateauStandard.length; i++) {
             System.out.println("Case " + i + " - " + plateauStandard[i]);
         }
     }
 
     public void fillPlateau() {
-        for (int j = 0; j<4; j++) {
+        for (int j = 0; j < 4; j++) {
             myPlateau.add(new Dragon());
         }
-        for (int k = 0; k<10; k++) {
+        for (int k = 0; k < 10; k++) {
             myPlateau.add(new Sorcier());
         }
-        for (int l = 0; l<10; l++) {
+        for (int l = 0; l < 10; l++) {
             myPlateau.add(new Gobelin());
         }
-        for (int m = 0; m<5; m++) {
+        for (int m = 0; m < 5; m++) {
             myPlateau.add(new Massue());
         }
-        for (int n = 0; n<4; n++) {
+        for (int n = 0; n < 4; n++) {
             myPlateau.add(new Epee());
         }
-        for (int p = 0; p<5; p++) {
+        for (int p = 0; p < 5; p++) {
             myPlateau.add(new Eclair());
         }
-        for (int q = 0; q<2; q++) {
+        for (int q = 0; q < 2; q++) {
             myPlateau.add(new BouleDeFeu());
         }
-        for (int r = 0; r<6; r++) {
+        for (int r = 0; r < 6; r++) {
             myPlateau.add(new PotionStandard());
         }
-        for (int s = 0; s<2; s++) {
+        for (int s = 0; s < 2; s++) {
             myPlateau.add(new GrandePotion());
         }
-        for (int t = 0; t<16; t++) {
+        for (int t = 0; t < 16; t++) {
             myPlateau.add(new CaseVide());
         }
 
@@ -74,22 +73,16 @@ public class Game {
     }
 
     public void play(Personnage personnage) {
-
-            for (positionJoueur = 0; positionJoueur < myPlateau.size(); positionJoueur++) {
-                if(!personnage.isMort()) {
-                    myPlateau.get(positionJoueur).interact(personnage);
-                    personnage.setMort();
-                } /*else {
-                    System.out.println("Perso est mort");
-                }*/
+        System.out.println("----------------------PLAY------------------------");
+        for (positionJoueur = 0; positionJoueur < myPlateau.size(); positionJoueur++) {
+            if (personnage.getNiveau() > 0) {
+                System.out.println("Case " + positionJoueur + " - " + plateauStandard[positionJoueur]);
+                plateauStandard[positionJoueur].interact(personnage);
+                System.out.println("         Nouveau niveau: " + personnage.getNiveau() + ", Nouvelle force: " + personnage.getForce());
+            } else {
+                break;
             }
-            System.out.println("Perso est mort: " + personnage.isMort());
-
-
-        System.out.println("----------------------------------------------");
-        System.out.println("Niveau de personnage: " + personnage.getNiveau());
-        System.out.println("Force de personnage: " + personnage.getForce());
-
-
-}
+        }
+        System.out.println("Perso est mort à la case " + positionJoueur);
+    }
 }

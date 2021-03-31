@@ -1,5 +1,7 @@
 package main.java.warriors;
 
+import main.java.warriors.cases.armes.Armes;
+
 import java.util.Scanner;
 
 public class Magicien extends Personnage{
@@ -15,4 +17,6 @@ public class Magicien extends Personnage{
     public Magicien(String nom, int niveau, int force) {
         super(nom,niveau,force);
     }
+
+    public void setArme(Armes armes) {}
 }

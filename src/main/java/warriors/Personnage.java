@@ -1,31 +1,30 @@
 package main.java.warriors;
 
 import main.java.warriors.cases.armes.Armes;
+import main.java.warriors.cases.sorts.Sorts;
 
 public abstract class Personnage {
     private String nom;
     private int niveau;
     private int force;
     private Armes armes;
-    private boolean mort;
-
-    public void setMort() {
-        /*if (niveau <= 0) {mort = true;}
-        else { mort = false;}*/
-        mort = niveau <= 0;
-    }
-
-    public boolean isMort() {
-        return mort;
-    }
+    private Sorts sorts;
 
     public Armes getArme() {
         return armes;
     }
-
     public void setArme(Armes armes) {
         this.armes = armes;
     }
+
+    public Sorts getSorts() {
+        return sorts;
+    }
+
+    public void setSorts(Sorts sorts) {
+        this.sorts = sorts;
+    }
+
 
     public Personnage() {
         nom = "Person";
