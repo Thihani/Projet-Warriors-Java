@@ -2,8 +2,12 @@ package main.java.warriors;
 
 import java.util.Scanner;
 
+/**
+ * This class is for communicating with users
+ */
 
 public class Menu {
+
     private String typeDePersonnage;
     private String nom;
     private int niveau;
@@ -117,6 +121,9 @@ public class Menu {
         }
         this.home();
     }
+    /**
+     * This method is for display homepage
+     */
 
     public void home() {
         Scanner clavier = new Scanner(System.in);
@@ -128,8 +135,11 @@ public class Menu {
         System.out.println("Entrer le numero: ");
         action = clavier.nextInt();
     }
-
+    /**
+     * This method is for displaying details of the character
+     */
     public void afficher(Personnage myPersonnage) {
+
         if (typeDePersonnage.equals("Guerrier")) {
             System.out.println("Votre Guerrier");
         } else {
@@ -138,8 +148,12 @@ public class Menu {
         System.out.println(myPersonnage.toString());
         this.home();
     }
+    /**
+     * This method is for modifying details of the character
+     */
 
     public void modifier(Personnage myPersonnage) {
+
         Scanner clavier = new Scanner(System.in);
         System.out.print("Saisir le nouveau nom: ");
         myPersonnage.setNom(clavier.nextLine());
@@ -149,12 +163,18 @@ public class Menu {
         myPersonnage.setForce(clavier.nextInt());
         this.home();
     }
-
+    /**
+     * This method is for exiting the game
+     */
     public void quitter() {
         System.out.println("Vous avez quitté de Warriors!");
     }
+    /**
+     * This method is for playing the game
+     */
 
     public void demarrer(Personnage personnage) {
+
         /*Plateau plateau = new Plateau();
         position = 1;
         try {

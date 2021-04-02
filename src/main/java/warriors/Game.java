@@ -33,6 +33,9 @@ public class Game {
     }
 
     public void display() {
+        /**
+         * This method is to display all the cases of the board of the game
+         */
         fillPlateau();
         System.out.println("-----------------------PLATEAU DU JEU-----------------------");
         for (int i = 0; i < plateauStandard.length; i++) {
@@ -41,6 +44,9 @@ public class Game {
     }
 
     public void fillPlateau() {
+        /**
+         * This method is to fill the cases of the board of the game
+         */
         dragon = new Dragon();
         sorcier = new Sorcier();
         gobelin = new Gobelin();
