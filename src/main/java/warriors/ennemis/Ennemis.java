@@ -23,6 +23,9 @@ public class Ennemis implements Case {
     public int getNiveau() {
         return niveau;
     }
+    public void setNiveau(int niveau) {
+        this.niveau = niveau;
+    }
 
     public void interact(Personnage personnage) {}
 
