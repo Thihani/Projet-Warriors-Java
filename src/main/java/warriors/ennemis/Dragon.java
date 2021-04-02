@@ -8,7 +8,11 @@ public class Dragon extends Ennemis {
     }
 
     public void interact(Personnage personnage){
-        personnage.setNiveau(personnage.getNiveau() - getForce());
-        setNiveau(getNiveau() - personnage.getForce());
+        if (this.getNiveau() > 0) {
+            personnage.setNiveau(personnage.getNiveau() - getForce());
+            setNiveau(getNiveau() - personnage.getForce());
+        } else {
+            System.out.println("        " + this.getNom() + " est mort!");
+        }
     }
 }

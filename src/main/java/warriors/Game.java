@@ -8,17 +8,25 @@ import main.java.warriors.cases.potions.GrandePotion;
 import main.java.warriors.cases.potions.PotionStandard;
 import main.java.warriors.cases.sorts.BouleDeFeu;
 import main.java.warriors.cases.sorts.Eclair;
+import main.java.warriors.cases.sorts.Sorts;
 import main.java.warriors.ennemis.Dragon;
+import main.java.warriors.ennemis.Ennemis;
 import main.java.warriors.ennemis.Gobelin;
 import main.java.warriors.ennemis.Sorcier;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Game {
     private ArrayList<Case> myPlateau;
     private int positionJoueur;
     private int lancerDe;
     private Case[] plateauStandard = new Case[64];
+    private Dragon dragon;
+    private Sorcier sorcier;
+    private Gobelin gobelin;
+    private int choix;
+    private int reculer;
 
     public Game() {
         myPlateau = new ArrayList<>();
@@ -33,14 +41,24 @@ public class Game {
     }
 
     public void fillPlateau() {
+        dragon = new Dragon();
+        sorcier = new Sorcier();
+        gobelin = new Gobelin();
+
         for (int j = 0; j < 4; j++) {
-            myPlateau.add(new Dragon());
+            if(dragon.getNiveau() > 0){
+                myPlateau.add(dragon);
+            } else {break;}
         }
         for (int k = 0; k < 10; k++) {
-            myPlateau.add(new Sorcier());
+            if(sorcier.getNiveau() > 0) {
+                myPlateau.add(sorcier);
+            } else {break;}
         }
         for (int l = 0; l < 10; l++) {
-            myPlateau.add(new Gobelin());
+            if (gobelin.getNiveau() > 0) {
+                myPlateau.add(gobelin);
+            } else {break;}
         }
         for (int m = 0; m < 5; m++) {
             myPlateau.add(new Massue());
@@ -64,7 +82,6 @@ public class Game {
             myPlateau.add(new CaseVide());
         }
 
-
         for (int u = 0; u < myPlateau.size(); u++) {
             int randomIndex = (int) (Math.random() * myPlateau.size());
             plateauStandard[u] = myPlateau.get(randomIndex);
@@ -74,15 +91,49 @@ public class Game {
 
     public void play(Personnage personnage) {
         System.out.println("----------------------PLAY------------------------");
-        for (positionJoueur = 0; positionJoueur < myPlateau.size(); positionJoueur++) {
-            if (personnage.getNiveau() > 0) {
-                System.out.println("Case " + positionJoueur + " - " + plateauStandard[positionJoueur]);
-                plateauStandard[positionJoueur].interact(personnage);
-                System.out.println("         Nouveau niveau: " + personnage.getNiveau() + ", Nouvelle force: " + personnage.getForce());
-            } else {
-                break;
+        Plateau plateau = new Plateau();
+        try {
+            while (positionJoueur <= plateauStandard.length) {
+                lancerDe = (int) (Math.random() * (6 - 1)) + 1;
+                System.out.println("         Lancer dé: " + lancerDe);
+                positionJoueur = positionJoueur + lancerDe;
+                plateau.setPosition(positionJoueur);
+                if (personnage.getNiveau() > 0) {
+                    System.out.println("Case " + positionJoueur + " - " + plateauStandard[positionJoueur]);
+                    if ((plateauStandard[positionJoueur] == gobelin && gobelin.getNiveau() > 0 )|| (plateauStandard[positionJoueur] == dragon && dragon.getNiveau() > 0)|| (plateauStandard[positionJoueur] == sorcier && sorcier.getNiveau() >0)) {
+                        Scanner clavier = new Scanner(System.in);
+                        System.out.println("Votre choix:");
+                        System.out.println("1: Attaquer.");
+                        System.out.println("2: Fuir.");
+                        choix = clavier.nextInt();
+                        if (choix == 1) {
+                            plateauStandard[positionJoueur].interact(personnage);
+                            System.out.println("         " + personnage.getNom() + " - Nouveau niveau: " + personnage.getNiveau() + ", Nouvelle force: " + personnage.getForce());
+
+                        } if (choix == 2) {
+                            reculer = (int) (Math.random() * (6 - 1)) + 1;
+                            System.out.println("         Reculer: " + reculer);
+                            positionJoueur = positionJoueur - reculer;
+                            System.out.println("Case " + positionJoueur + " - " + plateauStandard[positionJoueur]);
+                            System.out.println("         " + personnage.getNom() + " - Nouveau niveau: " + personnage.getNiveau() + ", Nouvelle force: " + personnage.getForce());
+
+                        }
+                    } else {
+                        plateauStandard[positionJoueur].interact(personnage);
+                        System.out.println("         " + personnage.getNom() + " - Nouveau niveau: " + personnage.getNiveau() + ", Nouvelle force: " + personnage.getForce());
+                    }
+                } else {
+                    break;
+                }
             }
+            if ((positionJoueur-1) < 63) {
+                System.out.println(personnage.getNom() + " est mort à la case " + (positionJoueur-1));
+            }
+            if ((positionJoueur-1) == 63) {
+                System.out.println(personnage.getNom() + " est gagné!");
+            }
+        } catch (PersonnageHorsPlateauException e) {
+        System.out.println(e);
         }
-        System.out.println("Perso est mort à la case " + (positionJoueur-1));
     }
 }
